@@ -104,7 +104,7 @@ jobs:
           #Set artifact name
           name: artifact
           #From this path
-          path: data-0.0.1-SNAPSHOT.jar
+          path: target/data-0.0.1-SNAPSHOT.jar
 #   #Deploy's job
   deploy:
     #Depends on build's job
@@ -126,8 +126,8 @@ jobs:
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws_session_token: ${{ secrets.AWS_SESSION_TOKEN }}
           use_existing_version_if_available: true
-          application_name: spring-boot-deploy
-          environment_name: Springbootdeploy-env
+          application_name: githubactionsdemo
+          environment_name: githubactionsdemo-env
           version_label: ${{github.SHA}}
           region: us-east-1
-          deployment_package: data-0.0.1-SNAPSHOT.jar
+          deployment_package: target/data-0.0.1-SNAPSHOT.jar
