@@ -6,9 +6,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Controller {
 
-    @GetMapping(value = "getThisMan")
-    public DemoModel getThisMan(){
-        return new DemoModel();
-    }
+	@GetMapping(value = "getThisMan")
+	public DemoModel getThisMan() {
+		    System.out.println("asdf");return new DemoModel();
+
+	}
 
 }

@@ -8,7 +8,8 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@SpringBootTest(classes = GithubactionsdemoApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = GithubactionsdemoApplication.class,
+		webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class GithubactionsdemoApplicationTests {
 
 	@LocalServerPort
@@ -22,16 +23,16 @@ class GithubactionsdemoApplicationTests {
 	}
 
 	@Test
-	public void testGetThisMan(){
+	public void testGetThisMan() {
 		String url = "http://localhost:" + port + "/getThisMan";
 		DemoModel response = this.restTemplate.getForObject(url, DemoModel.class);
 
 		assertNotNull(response);
 	}
 
-//	@Test
-//	public void failureTest(){
-//		fail();
-//	}
+	// @Test
+	// public void failureTest(){
+	// fail();
+	// }
 
 }
