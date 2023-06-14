@@ -8,7 +8,7 @@ public class Controller {
 
 	@GetMapping(value = "getThisMan")
 	public DemoModel getThisMan() {
-		    System.out.println("asdf");return new DemoModel();
+		    	System.out.println("asdf");return new DemoModel();
 
 	}
 
