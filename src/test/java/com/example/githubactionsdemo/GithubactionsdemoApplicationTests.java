@@ -1,4 +1,7 @@
+/* (C)2023 */
 package com.example.githubactionsdemo;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,33 +9,29 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-@SpringBootTest(classes = GithubactionsdemoApplication.class,
-		webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(
+        classes = GithubactionsdemoApplication.class,
+        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class GithubactionsdemoApplicationTests {
 
-	@LocalServerPort
-	private int port;
+    @LocalServerPort private int port;
 
-	@Autowired
-	private TestRestTemplate restTemplate;
+    @Autowired private TestRestTemplate restTemplate;
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void contextLoads() {}
 
-	@Test
-	public void testGetThisMan() {
-		String url = "http://localhost:" + port + "/getThisMan";
-		DemoModel response = this.restTemplate.getForObject(url, DemoModel.class);
+    @Test
+    public void testGetThisMan() {
+        String url = "http://localhost:" + port + "/getThisMan";
+        DemoModel response = this.restTemplate.getForObject(url, DemoModel.class);
 
-		assertNotNull(response);
-	}
+        assertNotNull(response);
+    }
 
-	// @Test
-	// public void failureTest(){
-	// fail();
-	// }
+    // @Test
+    // public void failureTest(){
+    // fail();
+    // }
 
 }

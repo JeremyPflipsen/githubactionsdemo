@@ -1,3 +1,4 @@
+/* (C)2023 */
 package com.example.githubactionsdemo;
 
 import lombok.Getter;
@@ -7,6 +8,5 @@ import lombok.Setter;
 @Setter
 public class DemoModel {
 
-	private String boi = "fuk u";
-
+    private String boi = "fuk u";
 }

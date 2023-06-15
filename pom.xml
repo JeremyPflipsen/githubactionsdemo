@@ -60,6 +60,44 @@
 			</plugin>
 
 			<plugin>
+				<groupId>com.rudikershaw.gitbuildhook</groupId>
+				<artifactId>git-build-hook-maven-plugin</artifactId>
+				<version>3.1.0</version>
+				<configuration>
+					<installHooks>
+						<commit-msg>hooks/pre-commit-apply-spotless</commit-msg>
+						<pre-commit>hooks/pre-commit</pre-commit>
+					</installHooks>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>install</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+<!--			<plugin>-->
+<!--				<groupId>no.oms.maven</groupId>-->
+<!--				<artifactId>pre-commit-maven-plugin</artifactId>-->
+<!--				<version>LATEST_VERSION</version>-->
+<!--				<inherited>false</inherited>-->
+<!--				<configuration>-->
+<!--					&lt;!&ndash; The version of pre-commit you would like to use &ndash;&gt;-->
+<!--					<precommitVersion>v1.10.1</precommitVersion>-->
+<!--				</configuration>-->
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<goals>-->
+<!--							<goal>download-binary</goal>-->
+<!--							<goal>generate-hooks</goal>-->
+<!--						</goals>-->
+<!--					</execution>-->
+<!--				</executions>-->
+<!--			</plugin>-->
+
+			<plugin>
 				<groupId>com.diffplug.spotless</groupId>
 				<artifactId>spotless-maven-plugin</artifactId>
 				<version>2.37.0</version>
