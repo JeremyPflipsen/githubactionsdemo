@@ -107,33 +107,27 @@ jobs:
           path: target/data-0.0.1-SNAPSHOT.jar
 #   #Deploy's job
   deploy:
+    #Depends on build's job
     needs: build
     name: Deploy
+    #Run on Ubuntu using the latest version
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Create ZIP deployment package
-        run: zip -r deploy_package.zip ./
-
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
+      - name: Download JAR
+        #Download the artifact which was uploaded in the build's job
+        uses: actions/download-artifact@v2
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: "us-east-1"
-
-      - name: Upload package to S3 bucket
-        run: aws s3 cp deploy_package.zip s3://my-awesome-app-deploy-andrey/
-
-      - name: Create new ElasticBeanstalk Application Version
-        run: |
-          aws elasticbeanstalk create-application-version \
-          --application-name githubactionsdemo \
-          --source-bundle S3Bucket="my-awesome-app-deploy-andrey",S3Key="deploy_package.zip" \
-          --version-label "ver-${{ github.sha }}" \
-          --description "commit-sha-${{ github.sha }}"
-
-      - name: Deploy new ElasticBeanstalk Application Version
-        run: aws elasticbeanstalk update-environment --environment-name Githubactionsdemo-env --version-label "ver-${{ github.sha }}"
+          name: artifact
+      #Deploy the artifact (JAR) into AWS Beanstalk
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v13
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws_session_token: ${{ secrets.AWS_SESSION_TOKEN }}
+          use_existing_version_if_available: false
+          application_name: githubactionsdemo
+          environment_name: Githubactionsdemo-env
+          version_label: ${{github.SHA}}
+          region: us-east-1
+          deployment_package: data-0.0.1-SNAPSHOT.jar
