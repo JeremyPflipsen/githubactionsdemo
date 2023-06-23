@@ -104,7 +104,7 @@ jobs:
           #Set artifact name
           name: artifact
           #From this path
-          path: target/data-0.0.1-SNAPSHOT.jar
+          path: target/githubactionsdemo-0.0.1-SNAPSHOT.jar
 #   #Deploy's job
   deploy:
     #Depends on build's job
@@ -129,4 +129,4 @@ jobs:
           environment_name: githubactionsdemo #Environment name we created in Elastic BeanStalk
           version_label: ${{github.SHA}}
           region: us-east-1 #VERY IMPORTANT: AWS Region where initially Applciation was created in AWS EBS. We created in us-east-1 which is N-Virginia
-          deployment_package: data-0.0.1-SNAPSHOT.jar #download artifacts from previous job
+          deployment_package: githubactionsdemo-0.0.1-SNAPSHOT.jar #download artifacts from previous job
