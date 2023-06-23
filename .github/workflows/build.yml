@@ -125,9 +125,9 @@ jobs:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws_session_token: ${{ secrets.AWS_SESSION_TOKEN }}
-          use_existing_version_if_available: false
+          use_existing_version_if_available: true
           application_name: githubactionsdemo
-          environment_name: Githubactionsdemo-env
+          environment_name: githubactionsdemo
           version_label: ${{github.SHA}}
           region: us-east-1
           deployment_package: data-0.0.1-SNAPSHOT.jar
