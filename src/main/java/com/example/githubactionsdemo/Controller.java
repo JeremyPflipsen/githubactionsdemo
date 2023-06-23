@@ -12,4 +12,9 @@ public class Controller {
         System.out.println("asdf");
         return new DemoModel();
     }
+
+    @GetMapping("popo")
+    public String popo(){
+        return "popo";
+    }
 }
