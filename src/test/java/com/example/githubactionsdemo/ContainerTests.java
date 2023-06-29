@@ -1,6 +1,6 @@
+/* (C)2023 */
 package com.example.githubactionsdemo;
 
-import net.bytebuddy.utility.dispatcher.JavaDispatcher;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,20 +18,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @AutoConfigureMockMvc
 public class ContainerTests {
 
-    @Container
-    @ServiceConnection
-    private static PostgreSQLContainer postgreSQLContainer = new PostgreSQLContainer("postgres:15.2-alpine");
+    @Container @ServiceConnection
+    private static PostgreSQLContainer postgreSQLContainer =
+            new PostgreSQLContainer("postgres:15.2-alpine");
 
-    @Container
-    @ServiceConnection
-    private static KafkaContainer kafkaContainer = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:7.2.1"));
+    @Container @ServiceConnection
+    private static KafkaContainer kafkaContainer =
+            new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:7.2.1"));
 
     @Test
-    public void contextLoads(){
+    public void contextLoads() {
         System.out.println("Loads");
         assertTrue(postgreSQLContainer.isRunning());
         assertTrue(kafkaContainer.isRunning());
-
     }
-
 }
