@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
+import org.springframework.test.context.TestPropertySource;
 import org.testcontainers.containers.KafkaContainer;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
@@ -21,8 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @AutoConfigureMockMvc
 public class ContainerTests {
 
-    @Autowired
-    BookRepository bookRepository;
+    @Autowired BookRepository bookRepository;
 
     @Container @ServiceConnection
     private static PostgreSQLContainer postgreSQLContainer =
@@ -40,9 +40,14 @@ public class ContainerTests {
     }
 
     @Test
-    public void dbInitializes(){
+    public void dbInitializes() {
         System.out.println("initialize db");
+        System.out.println(postgreSQLContainer.getUsername());
+        System.out.println(postgreSQLContainer.getJdbcUrl());
+        System.out.println(postgreSQLContainer.getPassword());
         assertNotNull(bookRepository.getBookById(1));
         System.out.println(bookRepository.getBookById(1));
+        //this doesn't work with jdbc. See https://github.com/testcontainers/testcontainers-java/blob/main/modules/postgresql/src/test/java/org/testcontainers/junit/postgresql/SimplePostgreSQLTest.java
+        // @ServiceConnection does not update datasource, so while the environment has the right values, jdbcTemplate does not.
     }
 }
