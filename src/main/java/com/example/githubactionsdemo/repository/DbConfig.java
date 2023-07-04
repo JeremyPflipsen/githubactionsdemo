@@ -1,3 +1,4 @@
+/* (C)2023 */
 package com.example.githubactionsdemo.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,7 @@ import javax.sql.DataSource;
 @PropertySource("classpath:application.properties")
 public class DbConfig {
 
-    @Autowired
-    Environment environment;
+    @Autowired Environment environment;
 
     private final String URL = "url";
     private final String USER = "dbuser";

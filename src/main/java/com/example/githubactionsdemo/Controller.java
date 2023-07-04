@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Controller {
 
-    @Autowired
-    private BookRepositoryImpl bookRepository;
+    @Autowired private BookRepositoryImpl bookRepository;
 
     @GetMapping(value = "getThisMan")
     public DemoModel getThisMan() {
@@ -20,12 +19,12 @@ public class Controller {
     }
 
     @GetMapping("popo")
-    public String popo(){
+    public String popo() {
         return "popo";
     }
 
     @GetMapping("book")
-    public Book getBookById(@RequestParam int id){
+    public Book getBookById(@RequestParam int id) {
         return bookRepository.getBookById(id);
     }
 }

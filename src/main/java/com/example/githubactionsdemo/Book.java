@@ -1,9 +1,9 @@
+/* (C)2023 */
 package com.example.githubactionsdemo;
-
-import lombok.Data;
 
 import java.math.BigDecimal;
 import java.sql.Date;
+import lombok.Data;
 
 @Data
 public class Book {
