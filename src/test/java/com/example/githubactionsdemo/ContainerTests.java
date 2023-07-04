@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
-import org.springframework.test.context.TestPropertySource;
 import org.testcontainers.containers.KafkaContainer;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
@@ -47,7 +46,10 @@ public class ContainerTests {
         System.out.println(postgreSQLContainer.getPassword());
         assertNotNull(bookRepository.getBookById(1));
         System.out.println(bookRepository.getBookById(1));
-        //this doesn't work with jdbc. See https://github.com/testcontainers/testcontainers-java/blob/main/modules/postgresql/src/test/java/org/testcontainers/junit/postgresql/SimplePostgreSQLTest.java
-        // @ServiceConnection does not update datasource, so while the environment has the right values, jdbcTemplate does not.
+        // this doesn't work with jdbc. See
+        // https://github.com/testcontainers/testcontainers-java/blob/main/modules/postgresql/src/test/java/org/testcontainers/junit/postgresql/SimplePostgreSQLTest.java
+        // @ServiceConnection does not update datasource, so while the environment has the right
+        // values, jdbcTemplate does not.
+        // also see https://stackoverflow.com/questions/61362092/spring-testcontainers-driver-org-testcontainers-jdbc-containerdatabasedriver-cla
     }
 }
